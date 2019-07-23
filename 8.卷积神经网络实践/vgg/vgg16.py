@@ -13,8 +13,9 @@ VGG_MEAN = [103.939, 116.779, 123.68]
 class Vgg16():
     def __init__(self, vgg16_path=None):
         if vgg16_path is None:
+            #在当前工作目录读入vgg16.npy
             vgg16_path = os.path.join(os.getcwd(), "vgg16.npy") 
-            self.data_dict = np.load(vgg16_path, encoding='latin1').item() 
+            self.data_dict = np.load(vgg16_path, encoding='latin1',allow_pickle=True).item() 
 
     def forward(self, images):
         

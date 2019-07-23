@@ -6,7 +6,7 @@ import vgg16
 import utils
 from Nclasses import labels
 
-img_path = raw_input('Input the path and image name:')
+img_path = input('Input the path and image name:')
 img_ready = utils.load_image(img_path) 
 
 fig=plt.figure(u"Top-5 预测结果") 
@@ -17,15 +17,15 @@ with tf.Session() as sess:
     vgg.forward(images) 
     probability = sess.run(vgg.prob, feed_dict={images:img_ready})
     top5 = np.argsort(probability[0])[-1:-6:-1]
-    print "top5:",top5
+    print ("top5:",top5)
     values = []
     bar_label = []
     for n, i in enumerate(top5): 
-        print "n:",n
-        print "i:",i
+        print ("n:",n)
+        print ("i:",i)
         values.append(probability[0][i]) 
         bar_label.append(labels[i]) 
-        print i, ":", labels[i], "----", utils.percent(probability[0][i]) 
+        print (i, ":", labels[i], "----", utils.percent(probability[0][i]) )
         
     ax = fig.add_subplot(111) 
     ax.bar(range(len(values)), values, tick_label=bar_label, width=0.5, fc='g')

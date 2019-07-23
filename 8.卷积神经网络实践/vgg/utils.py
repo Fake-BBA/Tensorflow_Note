@@ -21,7 +21,7 @@ def load_image(path):
     short_edge = min(img.shape[:2]) 
     y = (img.shape[0] - short_edge) / 2  
     x = (img.shape[1] - short_edge) / 2 
-    crop_img = img[y:y+short_edge, x:x+short_edge] 
+    crop_img = img[int(y):int(y+short_edge), int(x):int(x+short_edge)] 
     
     ax1 = fig.add_subplot(132) 
     ax1.set_xlabel(u"Centre Picture") 
