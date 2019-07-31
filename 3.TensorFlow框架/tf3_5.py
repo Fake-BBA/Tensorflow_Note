@@ -18,6 +18,8 @@ with tf.Session() as sess:
     init_op = tf.global_variables_initializer()  
     sess.run(init_op)
     print ("the result of tf3_5.py is:\n",sess.run(y, feed_dict={x: [[0.7,0.5],[0.2,0.3],[0.3,0.4],[0.4,0.5]]}))
+
+    #这里只是为了演示w1,w2结果，上面y的计算过程中已经算出了w1,w2
     print ("w1:\n", sess.run(w1))
     print ("w2:\n", sess.run(w2))
 

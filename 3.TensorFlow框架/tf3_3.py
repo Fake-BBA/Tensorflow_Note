@@ -5,6 +5,7 @@ import tensorflow as tf
 #定义输入和参数
 x = tf.constant([[0.7, 0.5]])
 w1= tf.Variable(tf.random_normal([2, 3], stddev=1, seed=1))
+#3行1列矩阵
 w2= tf.Variable(tf.random_normal([3, 1], stddev=1, seed=1))
 
 #定义前向传播过程

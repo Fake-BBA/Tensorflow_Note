@@ -8,7 +8,7 @@ LEARNING_RATE_BASE = 0.1
 LEARNING_RATE_DECAY = 0.99
 REGULARIZER = 0.0001
 STEPS = 50000
-MOVING_AVERAGE_DECAY = 0.99
+MOVING_AVERAGE_DECAY = 0.99 #滑动平均衰减率
 MODEL_SAVE_PATH="./model/"
 MODEL_NAME="mnist_model"
 
@@ -33,8 +33,11 @@ def backward(mnist):
 
     train_step = tf.train.GradientDescentOptimizer(learning_rate).minimize(loss, global_step=global_step)
 
+    #实例化滑动平均类
     ema = tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY, global_step)
+    #求算滑动平均节点ema_op
     ema_op = ema.apply(tf.trainable_variables())
+    #将计算滑动平均 ema_op 和训练过程 train_step 绑定在一起运行，使其合成一个训练节点
     with tf.control_dependencies([train_step, ema_op]):
         train_op = tf.no_op(name='train')
 

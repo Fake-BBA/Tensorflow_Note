@@ -1,13 +1,13 @@
 #coding:utf-8
 import tensorflow as tf
-IMAGE_SIZE = 28
-NUM_CHANNELS = 1
-CONV1_SIZE = 5
-CONV1_KERNEL_NUM = 32
-CONV2_SIZE = 5
-CONV2_KERNEL_NUM = 64
-FC_SIZE = 512
-OUTPUT_NODE = 10
+IMAGE_SIZE = 28     #输入特征为28*28
+NUM_CHANNELS = 1    #输入通道数为1（灰度图）    
+CONV1_SIZE = 5      #第一层卷积核大小为5*5
+CONV1_KERNEL_NUM = 32   #第一层卷积核个数为32
+CONV2_SIZE = 5         #第二层卷积核大小为5*5
+CONV2_KERNEL_NUM = 64   #第二层卷积核个数为64
+FC_SIZE = 512   #全连接第一层（隐层）的神经元个数为512
+OUTPUT_NODE = 10    #第二层（输出层）的节点个数为10(10分类)
 
 def get_weight(shape, regularizer):
 	w = tf.Variable(tf.truncated_normal(shape,stddev=0.1))
