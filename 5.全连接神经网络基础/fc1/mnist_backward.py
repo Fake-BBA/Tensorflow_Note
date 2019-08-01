@@ -12,7 +12,7 @@ MOVING_AVERAGE_DECAY = 0.99 #滑动平均衰减率
 MODEL_SAVE_PATH="./model/"
 MODEL_NAME="mnist_model"
 
-
+#不支持断电训练
 def backward(mnist):
 
     x = tf.placeholder(tf.float32, [None, mnist_forward.INPUT_NODE])

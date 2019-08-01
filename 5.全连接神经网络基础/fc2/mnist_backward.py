@@ -12,7 +12,7 @@ MOVING_AVERAGE_DECAY = 0.99
 MODEL_SAVE_PATH="./model/"
 MODEL_NAME="mnist_model"
 
-
+#支持断点
 def backward(mnist):
 
     x = tf.placeholder(tf.float32, [None, mnist_forward.INPUT_NODE])
@@ -43,10 +43,12 @@ def backward(mnist):
     with tf.Session() as sess:
         init_op = tf.global_variables_initializer()
         sess.run(init_op)
-
+        #载入之前的断点参数
+        #该函数表示如果断点文件夹中包含有效断点状态文件,则返回该文件。
         ckpt = tf.train.get_checkpoint_state(MODEL_SAVE_PATH)
         if ckpt and ckpt.model_checkpoint_path:
-		    saver.restore(sess, ckpt.model_checkpoint_path)
+            #sess:表示当前会话,之前保存的结果将被加载入这个会话ckpt.model_checkpoint_path:表示模型存储的位置,不需要提供模型的名字,它会去查看 checkpoint 文件,看看最新的是谁,叫做什么。
+            saver.restore(sess, ckpt.model_checkpoint_path)
 
         for i in range(STEPS):
             xs, ys = mnist.train.next_batch(BATCH_SIZE)
